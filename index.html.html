@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Case Management System</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; color: #222; }
+    header { background: #243b64; color: white; text-align: center; padding: 22px; }
+    header h1 { margin: 0 0 8px; font-size: 28px; }
+    header p { margin: 0; font-size: 15px; }
+    nav { background: #182b4a; text-align: center; padding: 12px; }
+    nav a { color: white; text-decoration: none; display: inline-block; padding: 9px 17px; font-size: 14px; }
+    nav a:hover { background: #365887; }
+    main { width: 92%; max-width: 1100px; margin: 25px auto; }
+    section { background: white; padding: 20px; margin-bottom: 22px; border: 1px solid #d2d9e1; border-radius: 4px; }
+    h2 { color: #243b64; margin: 0 0 16px; padding-bottom: 10px; border-bottom: 2px solid #dce6f3; font-size: 22px; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+    .card { text-align: center; background: #edf4fc; border: 1px solid #c3d8ee; border-radius: 4px; padding: 17px 10px; }
+    .card h3 { color: #1e5d9d; font-size: 26px; margin: 0 0 7px; }
+    .card p { font-size: 13px; margin: 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { background: #243b64; color: white; text-align: left; }
+    th, td { padding: 11px; border: 1px solid #cdd6df; }
+    tr:nth-child(even) { background: #f8fafc; }
+    .status { color: white; padding: 5px 8px; border-radius: 3px; font-size: 12px; }
+    .open { background: #3674b8; } .hearing { background: #d78a26; } .review { background: #7b5ca8; } .closed { background: #2f946c; }
+    .priority-high { color: #d23e3e; font-weight: bold; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    label { display: block; font-size: 14px; font-weight: bold; }
+    input, select { width: 100%; margin-top: 6px; padding: 10px; border: 1px solid #b9c6d3; border-radius: 3px; font: 14px Arial; }
+    button { background: #243b64; color: white; border: 0; padding: 11px 20px; margin-top: 18px; border-radius: 3px; cursor: pointer; font-size: 14px; }
+    button:hover { background: #365887; }
+    #message { margin-left: 12px; color: #208150; font-weight: bold; }
+    footer { background: #182b4a; color: white; text-align: center; padding: 17px; font-size: 13px; margin-top: 35px; }
+    @media (max-width: 700px) { .dashboard-cards { grid-template-columns: repeat(2, 1fr); } .form-grid { grid-template-columns: 1fr; } table { font-size: 12px; } th, td { padding: 8px 5px; } nav a { padding: 8px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>⚖️ Online Legal Case Management System</h1>
+    <p>Organize cases, clients, hearings, tasks, and documents</p>
+  </header>
+
+  <nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#cases">Cases</a>
+    <a href="#hearings">Hearings</a>
+    <a href="#tasks">Tasks</a>
+    <a href="#add-case">Add Case</a>
+  </nav>
+
+  <main>
+    <section id="dashboard">
+      <h2>Case Dashboard</h2>
+      <div class="dashboard-cards">
+        <div class="card"><h3>18</h3><p>Total Cases</p></div>
+        <div class="card"><h3>11</h3><p>Open Cases</p></div>
+        <div class="card"><h3>4</h3><p>Hearings This Week</p></div>
+        <div class="card"><h3>6</h3><p>Pending Tasks</p></div>
+      </div>
+    </section>
+
+    <section id="cases">
+      <h2>Case Records</h2>
+      <table>
+        <thead><tr><th>Case ID</th><th>Client Name</th><th>Case Type</th><th>Lawyer</th><th>Status</th><th>Priority</th></tr></thead>
+        <tbody id="caseTableBody">
+          <tr><td>LC-101</td><td>Rohan Sharma</td><td>Property Dispute</td><td>Adv. Mehta</td><td><span class="status open">Open</span></td><td class="priority-high">High</td></tr>
+          <tr><td>LC-102</td><td>Priya Nair</td><td>Family Law</td><td>Adv. Khan</td><td><span class="status hearing">Hearing Due</span></td><td>Medium</td></tr>
+          <tr><td>LC-103</td><td>Arjun Verma</td><td>Corporate Law</td><td>Adv. Mehta</td><td><span class="status review">Under Review</span></td><td>Medium</td></tr>
+          <tr><td>LC-104</td><td>Sana Iqbal</td><td>Consumer Complaint</td><td>Adv. Roy</td><td><span class="status closed">Closed</span></td><td>Low</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="hearings">
+      <h2>Upcoming Hearings</h2>
+      <table>
+        <tr><th>Case ID</th><th>Client</th><th>Hearing Date</th><th>Court</th><th>Purpose</th></tr>
+        <tr><td>LC-101</td><td>Rohan Sharma</td><td>30 Nov, 10:30 AM</td><td>City Civil Court</td><td>Evidence Review</td></tr>
+        <tr><td>LC-102</td><td>Priya Nair</td><td>02 Dec, 11:00 AM</td><td>Family Court</td><td>Final Hearing</td></tr>
+        <tr><td>LC-103</td><td>Arjun Verma</td><td>04 Dec, 02:00 PM</td><td>District Court</td><td>Document Submission</td></tr>
+      </table>
+    </section>
+
+    <section id="tasks">
+      <h2>Pending Tasks</h2>
+      <table>
+        <tr><th>Task</th><th>Case ID</th><th>Deadline</th><th>Assigned To</th><th>Status</th></tr>
+        <tr><td>Collect property documents</td><td>LC-101</td><td>29 Nov</td><td>Adv. Mehta</td><td>Pending</td></tr>
+        <tr><td>Prepare hearing notes</td><td>LC-102</td><td>01 Dec</td><td>Adv. Khan</td><td>In Progress</td></tr>
+        <tr><td>Review client agreement</td><td>LC-103</td><td>03 Dec</td><td>Adv. Roy</td><td>Pending</td></tr>
+      </table>
+    </section>
+
+    <section id="add-case">
+      <h2>Add New Case</h2>
+      <form id="caseForm">
+        <div class="form-grid">
+          <label>Case ID<input id="caseId" required placeholder="Example: LC-105"></label>
+          <label>Client Name<input id="clientName" required placeholder="Enter client name"></label>
+          <label>Case Type<select id="caseType"><option>Property Dispute</option><option>Family Law</option><option>Corporate Law</option><option>Consumer Complaint</option><option>Criminal Law</option></select></label>
+          <label>Assigned Lawyer<input id="lawyerName" required placeholder="Example: Adv. Mehta"></label>
+          <label>Case Status<select id="caseStatus"><option>Open</option><option>Hearing Due</option><option>Under Review</option><option>Closed</option></select></label>
+          <label>Priority<select id="priority"><option>High</option><option>Medium</option><option>Low</option></select></label>
+        </div>
+        <button type="submit">Add Case</button><span id="message"></span>
+      </form>
+    </section>
+  </main>
+
+  <footer>Online Legal Case Management System | Student Project using HTML, CSS and JavaScript</footer>
+
+  <script>
+    // Add a case to the case record table when the form is submitted.
+    document.getElementById("caseForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const caseId = document.getElementById("caseId").value;
+      const clientName = document.getElementById("clientName").value;
+      const caseType = document.getElementById("caseType").value;
+      const lawyerName = document.getElementById("lawyerName").value;
+      const caseStatus = document.getElementById("caseStatus").value;
+      const priority = document.getElementById("priority").value;
+      let statusClass = "open";
+
+      if (caseStatus === "Hearing Due") statusClass = "hearing";
+      if (caseStatus === "Under Review") statusClass = "review";
+      if (caseStatus === "Closed") statusClass = "closed";
+
+      const newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${caseId}</td><td>${clientName}</td><td>${caseType}</td>
+        <td>${lawyerName}</td><td><span class="status ${statusClass}">${caseStatus}</span></td>
+        <td class="${priority === "High" ? "priority-high" : ""}">${priority}</td>
+      `;
+
+      document.getElementById("caseTableBody").appendChild(newRow);
+      document.getElementById("message").textContent = "Case added successfully!";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
